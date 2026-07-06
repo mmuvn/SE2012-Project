@@ -1,0 +1,15 @@
+build/
+dist/
+${build.dir}/
+
+.scannerwork/
+.idea/
+
+nbproject/private/
+
+*.class
+*.war
+*.ear
+*.log
+
+src/java/ConnectDB.properties

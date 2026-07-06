@@ -1,0 +1,3 @@
+userID=your_sqlserver_user
+password=your_sqlserver_password
+url=jdbc:sqlserver://localhost:1433;databaseName=HE200133;encrypt=true;trustServerCertificate=true

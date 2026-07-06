@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- You may freely edit this file. See commented blocks below for -->
+<!-- some examples of how to customize the build. -->
+<!-- (If you delete it and reopen the project it will be recreated.) -->
+<!-- By default, only the Clean and Build commands use this build script. -->
+<!-- Commands such as Run, Debug, and Test only use this build script if -->
+<!-- the Compile on Save feature is turned off for the project. -->
+<!-- You can turn off the Compile on Save (or Deploy on Save) setting -->
+<!-- in the project's Project Properties dialog box.-->
+<project name="SE2012_Project" default="default" basedir="." xmlns:jacoco="antlib:org.jacoco.ant">
+    <description>Builds, tests, and runs the project SE2012_Project.</description>
+    <import file="nbproject/build-impl.xml"/>
+
+    <property name="jacoco.dir" value="C:\Users\admin\Desktop\jacoco-0.8.14\lib"/>
+    <property name="jacoco.exec.file" value="${basedir}/build/jacoco.exec"/>
+    <property name="jacoco.report.dir" value="${basedir}/build/jacoco-report"/>
+
+    <target name="jacoco-init">
+        <taskdef uri="antlib:org.jacoco.ant"
+                 resource="org/jacoco/ant/antlib.xml">
+            <classpath path="${jacoco.dir}\jacocoant.jar"/>
+        </taskdef>
+    </target>
+
+    <target name="jacoco-test" depends="clean,compile-test,jacoco-init">
+        <mkdir dir="${build.test.results.dir}"/>
+
+        <jacoco:coverage destfile="${jacoco.exec.file}">
+            <junit fork="true" printsummary="yes" haltonfailure="false">
+                <classpath>
+                    <pathelement path="${run.test.classpath}"/>
+                </classpath>
+
+                <batchtest todir="${build.test.results.dir}">
+                    <fileset dir="${build.test.classes.dir}">
+                        <include name="**/*Test.class"/>
+                    </fileset>
+                </batchtest>
+
+                <formatter type="plain"/>
+                <formatter type="xml"/>
+            </junit>
+        </jacoco:coverage>
+    </target>
+
+    <target name="jacoco-report" depends="jacoco-test,jacoco-init">
+        <mkdir dir="${jacoco.report.dir}"/>
+
+        <jacoco:report>
+            <executiondata>
+                <file file="${jacoco.exec.file}"/>
+            </executiondata>
+
+            <structure name="${ant.project.name}">
+                <classfiles>
+                    <fileset dir="${build.classes.dir}"/>
+                </classfiles>
+                <sourcefiles encoding="${source.encoding}">
+                    <fileset dir="${src.dir}"/>
+                </sourcefiles>
+            </structure>
+
+            <html destdir="${jacoco.report.dir}"/>
+            <xml destfile="${jacoco.report.dir}/jacoco.xml"/>
+            <csv destfile="${jacoco.report.dir}/jacoco.csv"/>
+        </jacoco:report>
+    </target>
+</project>
+

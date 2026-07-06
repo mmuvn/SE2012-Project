@@ -1,0 +1,49 @@
+SE2012 SHOPPING PROJECT SUMMARY
+===============================
+
+1. Project overview
+- This project is a JSP/Servlet shopping website connected to SQL Server.
+- It includes a customer storefront and an admin dashboard.
+- The customer side supports register, login, product browsing, product detail, cart, and checkout.
+- The admin side supports product, order, user, role, and category management.
+
+2. Main customer features
+- Login and register for customer accounts.
+- Browse products by category.
+- Search products by name.
+- View product detail with image, price, stock, and description.
+- Add products to cart, update quantity, and checkout.
+- Pagination on the storefront to avoid showing too many products at once.
+
+3. Main admin features
+- One admin dashboard page with embedded manager sections.
+- Product manager.
+- Order manager.
+- User manager.
+- Role manager.
+- Category manager.
+
+4. Important backend improvements
+- Product descriptions now use tblProducts.description.
+- Old product date fields were removed from the active flow.
+- Stock is reduced after checkout.
+- Products become inactive and show "Sold out." when quantity reaches 0.
+- Register now generates userID automatically in the backend.
+- Login now uses email only.
+
+5. Error handling
+- The project has a custom error page.
+- It handles 404, 500, and general exception cases through web.xml.
+- Normal business errors such as wrong login or duplicate email still show on the original page.
+
+6. Project structure
+- Models store application data objects.
+- DAOs handle database access.
+- Servlets handle request flow and business logic.
+- JSP pages render the user interface with JSTL/EL.
+- storefront.css is the shared stylesheet for customer and admin pages.
+
+7. Final assessment
+- The project is in a good state for a course submission.
+- The main shopping flow and admin flow are both working.
+- The most useful future improvements would be password hashing, safer SQL queries, and transaction handling for checkout.
